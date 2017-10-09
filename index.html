@@ -28,6 +28,17 @@
         <option value='insertionSort'>Insertion sort</option>
         <option value='oddEvenSort'>Odd-even sort</option>
         <option value='selectionSort'>Selection sort</option>
+        <option value='quickSort'>Quick sort</option>
+      </select>
+      </p>
+
+      <p>
+      <label for='#pivot'>Pivot</label>
+      <select id='pivot'>
+        <option value='random'>Random</option>
+        <option value='first'>First</option>
+        <option value='middle'>Middle</option>
+        <option value='last'>Last</option>
       </select>
       </p>
 
@@ -105,6 +116,18 @@
       tone.connect(track);
       tone.start();
 
+      var algorithm = document.querySelector('#algorithm');
+      algorithm.onchange = function() {
+        if (algorithm.value == 'quickSort') {
+          pivot.disabled = false;
+        } else {
+          pivot.disabled = true;
+        }
+      };
+
+      var pivot = document.querySelector('#pivot');
+      pivot.disabled = true;
+
       var sort = document.querySelector('#sort');
       sort.onclick = function click(event) {
         if (worker) {
@@ -118,6 +141,7 @@
         };
 
         var algorithm = document.querySelector('#algorithm');
+        var pivot = document.querySelector('#pivot');
         var shuffle = document.querySelector('#shuffle');
         var size = document.querySelector('#size');
 
@@ -156,7 +180,7 @@
           visualization.appendChild(element);
         }
 
-        worker.postMessage([algorithm.value, array]);
+        worker.postMessage([algorithm.value, array, pivot.value]);
       };
 
       var then = performance.now();

@@ -87,9 +87,59 @@ function selectionSort(a) {
   }
 }
 
+function pivot(aa, type, left, right) {
+  if (typeof(left) === 'undefined') left = 0;
+  if (typeof(right) === 'undefined') right = aa.length() - 1;
+  var p = null;
+  if (type === 'random') {
+    var p = left + Math.floor((right - left + 1) * Math.random());
+  } else if (type === 'first') {
+    p = left;
+  } else if (type === 'last') {
+    p = right;
+  } else if (type === 'middle') {
+    p = Math.round((left + right) / 2);
+  } else {
+    throw new TypeError('Invalid p type ' + type);
+  }
+
+  return p;
+}
+
+function partition(aa, type, left, right) {
+  var p = pivot(aa, type, left, right);
+  swap(aa, p, right);
+
+  p = left;
+  for (var i = left; i < right; i++) {
+    if (test(aa, i, right) < 0) {
+      if (i != p) {
+        swap(aa, i, p);
+      }
+      p += 1
+    }
+  }
+
+  swap(aa, right, p);
+
+  return p;
+}
+
+function quickSort(aa, type, left, right) {
+  var n = aa.length;
+  if (typeof(left) === 'undefined') left = 0;
+  if (typeof(right) === 'undefined') right = n - 1;
+
+  if (left >= right) return;
+
+  var p = partition(aa, type, left, right);
+  quickSort(aa, type, left, p - 1);
+  quickSort(aa, type, p + 1, right);
+}
+
 self.onmessage = function(event) {
   var sort = eval(event.data[0]);
-  sort(event.data[1], 'middle');
+  sort(event.data[1], event.data[2]);
 
   console.log(event.data[1]);
 };
