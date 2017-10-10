@@ -48,6 +48,29 @@ function cocktailSort(a) {
   }
 }
 
+function combSort(a) {
+  var shrink = 1.3;
+
+  var swapped = false;
+  var gap = a.length;
+
+  while ((gap > 1) || swapped)
+  {
+    if (gap > 1) {
+      gap = Math.floor(gap / shrink);
+    }
+
+    swapped = false;
+
+    for (var i = 0; gap + i < a.length; ++i) {
+      if (test(a, i, i + gap) > 0) {
+	swap(a, i, i + gap);
+	swapped = true;
+      }
+    }
+  }
+}
+
 function gnomeSort(a) {
   var n = a.length;
   for (var i = 1; i < n; true) {
