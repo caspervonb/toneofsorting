@@ -48,6 +48,20 @@ function cocktailSort(a) {
   }
 }
 
+function gnomeSort(a) {
+  var n = a.length;
+  for (var i = 1; i < n; true) {
+    if (test(a, i, i - 1) >= 0) {
+      ++i;
+    } else {
+      swap(a, i, i - 1);
+      if (i > 1) {
+	--i;
+      }
+    }
+  }
+}
+
 function insertionSort(a) {
   var n = a.length;
   for (var i = 1; i < n; i++) {
