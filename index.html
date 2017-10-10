@@ -177,7 +177,7 @@
             element.innerText = array[i];
           } else {
             element.className = 'bar';
-            element.style.height = Math.round((array[i] / array.length) * 100) + '%';
+            element.style.height = ((array[i] / array.length) * 100) + '%';
           }
 
           visualization.appendChild(element);
