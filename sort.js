@@ -85,6 +85,39 @@ function gnomeSort(a) {
   }
 }
 
+function heapSort(a) {
+  var n = a.length;
+  var i = n / 2;
+
+  while (true) {
+    if (i > 0) {
+      i--;
+    } else {
+      n--;
+      if (n == 0) return;
+      swap(a, 0, n);
+    }
+
+    var parent = i;
+    var child = i * 2 + 1;
+
+    while (child < n) {
+      if (child + 1 < n && test(a, child + 1, child) > 0) {
+	child++;
+      }
+
+      if (test(a, child, parent) > 0) {
+	swap(a, parent, child);
+	parent = child;
+	child = parent*2+1;
+      }
+      else {
+	break;
+      }
+    }
+  }
+}
+
 function insertionSort(a) {
   var n = a.length;
   for (var i = 1; i < n; i++) {
