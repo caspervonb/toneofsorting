@@ -87,7 +87,7 @@ function gnomeSort(a) {
 
 function heapSort(a) {
   var n = a.length;
-  var i = n / 2;
+  var i = Math.floor(n / 2);
 
   while (true) {
     if (i > 0) {
