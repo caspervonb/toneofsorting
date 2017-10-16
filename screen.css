@@ -8,6 +8,7 @@ html, body {
 }
 
 html {
+  font-size: 8px;
   font-family: Montserrat;
 }
 
@@ -17,7 +18,6 @@ main {
 }
 
 main > section:nth-child(1) {
-  text-align: center;
   margin: 0 0.5em;
 }
 
@@ -31,18 +31,32 @@ main > section:nth-child(2) {
   flex: 1;
 }
 
-.adsbygoogle {
-  display: none;
+.adslot_1 {
+  width: 320px;
+  height: 50px;
+  overflow: hidden;
 }
 
-@media screen and (min-width: 400px) {
+@media (min-width: 400px) {
   main {
     display: flex;
     flex-direction: row;
   }
 
-  .adsbygoogle {
-    display: block;
+  .adslot_1 {
+    width: 234px;
+    height: 60px;
+  }
+}
+
+@media (min-width: 800px) {
+  html {
+    font-size: 14px; 
+  }
+
+  .adslot_1 {
+    width: 300px;
+    height: 250px;
   }
 }
 
