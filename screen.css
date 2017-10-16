@@ -21,6 +21,11 @@ main > section:nth-child(1) {
   margin: 0 0.5em;
 }
 
+p {
+  margin: 2px;
+  padding: 2px;
+}
+
 main > section:nth-child(2) {
   margin: 0;
   flex: 1;
