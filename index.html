@@ -179,14 +179,22 @@
 
         for (var i = 0; i < array.length; i++) {
           var element = document.createElement('span');
-          element.dataset.value = array[i];
+
+          var value = array[i];
+          element.dataset.value = value;
+
+          var percent = (value / array.length) * 100;
 
           if (array.length <= 10) {
             element.className = 'ball';
             element.innerText = array[i];
           } else {
             element.className = 'bar';
-            element.style.height = ((array[i] / array.length) * 100) + '%';
+            element.style.height = percent + '%';
+          }
+
+          if (array.length >= 100) {
+            element.style.backgroundColor = 'hsl(' + ((percent / 100) * 360) + ', 85%, 60%)';
           }
 
           visualization.appendChild(element);
