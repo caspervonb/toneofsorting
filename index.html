@@ -145,6 +145,11 @@
         if (worker) {
           worker.terminate();
         }
+        
+        // https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
+        if (audio.resume) {
+          audio.resume();
+        }
 
         queue = new Array();
         worker = new Worker('sort.js');
